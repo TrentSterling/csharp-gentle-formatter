@@ -127,8 +127,7 @@
             color: var(--green);
         }
         .ws {
-            opacity: 0.6;
-            letter-spacing: 1px;
+            opacity: 0.5;
         }
         .stripped {
             opacity: 0.7;
@@ -136,6 +135,17 @@
         }
         .stripped::before {
             content: "← ";
+        }
+        .indent {
+            position: relative;
+        }
+        .indent::before {
+            content: "";
+            position: absolute;
+            left: 0.5ch;
+            top: 0;
+            bottom: 0;
+            border-left: 1px dashed rgba(255,255,255,0.2);
         }
 
         .features {
@@ -205,11 +215,11 @@
     <div class="compare">
         <div class="code-block">
             <div class="code-header bad">Other Formatters</div>
-            <pre><span class="line">public void Method()</span><span class="line">{</span><span class="line">    var x = 1;</span><span class="line bad"><span class="stripped">stripped</span></span><span class="line bad"><span class="stripped">stripped</span></span><span class="line bad"><span class="stripped">stripped</span></span><span class="line">    var y = 2;</span><span class="line">}</span></pre>
+            <pre><span class="line">public void Method()</span><span class="line">{</span><span class="line indent">    var x = 1;</span><span class="line indent bad"><span class="stripped">stripped</span></span><span class="line indent bad"><span class="stripped">stripped</span></span><span class="line indent bad"><span class="stripped">stripped</span></span><span class="line indent">    var y = 2;</span><span class="line">}</span></pre>
         </div>
         <div class="code-block">
             <div class="code-header good">Gentle Formatter</div>
-            <pre><span class="line">public void Method()</span><span class="line">{</span><span class="line">    var x = 1;</span><span class="line good"><span class="ws">····································</span></span><span class="line good"><span class="ws">····································</span></span><span class="line good"><span class="ws">····································</span></span><span class="line">    var y = 2;</span><span class="line">}</span></pre>
+            <pre><span class="line">public void Method()</span><span class="line">{</span><span class="line indent">    var x = 1;</span><span class="line indent good">    <span class="ws">····</span></span><span class="line indent good">    <span class="ws">····</span></span><span class="line indent good">    <span class="ws">····</span></span><span class="line indent">    var y = 2;</span><span class="line">}</span></pre>
         </div>
     </div>
 
