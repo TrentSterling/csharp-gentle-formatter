@@ -1,0 +1,99 @@
+{
+  "name": "csharp-gentle-formatter",
+  "displayName": "C# Gentle Formatter",
+  "description": "Formats C# structurally without touching whitespace choices - preserves blank lines and trailing whitespace for clean git diffs",
+  "version": "1.0.0",
+  "publisher": "trentsterling",
+  "author": {
+    "name": "Trent Sterling",
+    "url": "https://tront.xyz"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TrentSterling/csharp-gentle-formatter"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Formatters",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "csharp",
+    "c#",
+    "formatter",
+    "whitespace",
+    "gentle",
+    "preserving"
+  ],
+  "activationEvents": [
+    "onLanguage:csharp"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "csharpGentleFormatter.formatDocument",
+        "title": "C# Gentle Format: Format Document"
+      }
+    ],
+    "configuration": {
+      "title": "C# Gentle Formatter",
+      "properties": {
+        "csharpGentleFormatter.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable the C# Gentle Formatter"
+        },
+        "csharpGentleFormatter.braceStyle": {
+          "type": "string",
+          "enum": [
+            "allman",
+            "kr"
+          ],
+          "default": "allman",
+          "description": "Brace placement style: 'allman' (new line) or 'kr' (same line)"
+        },
+        "csharpGentleFormatter.operatorSpacing": {
+          "type": "boolean",
+          "default": true,
+          "description": "Add spaces around operators (=, +, -, ==, &&, etc.)"
+        },
+        "csharpGentleFormatter.keywordSpacing": {
+          "type": "boolean",
+          "default": true,
+          "description": "Add space after keywords (if, for, while, switch, catch)"
+        }
+      }
+    },
+    "languages": [
+      {
+        "id": "csharp",
+        "extensions": [
+          ".cs"
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTest.js",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "@vscode/test-electron": "^2.3.9",
+    "eslint": "^8.56.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.3.3"
+  }
+}
