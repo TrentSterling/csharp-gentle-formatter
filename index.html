@@ -19,6 +19,7 @@
             --text: #e6edf3;
             --text-dim: #8b949e;
             --border: #30363d;
+            --cyan: #58a6ff;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -29,7 +30,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 60px 20px;
+            padding: 50px 20px;
         }
         .hero {
             text-align: center;
@@ -42,13 +43,14 @@
         .tagline {
             color: var(--text-dim);
             margin-bottom: 24px;
+            line-height: 1.5;
         }
         .buttons {
             display: flex;
             gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
         .btn {
             display: inline-flex;
@@ -73,12 +75,20 @@
         }
         .btn-secondary:hover { border-color: var(--text-dim); }
 
+        h2 {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
         .compare {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 16px;
             max-width: 700px;
             width: 100%;
+            margin-bottom: 50px;
         }
         @media (max-width: 600px) {
             .compare { grid-template-columns: 1fr; }
@@ -100,17 +110,60 @@
         pre {
             padding: 14px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            line-height: 1.5;
+            font-size: 0.8rem;
+            line-height: 1.6;
             overflow-x: auto;
         }
-        .hl { display: block; margin: 0 -14px; padding: 0 14px; }
-        .hl.bad { background: rgba(248,81,73,0.15); }
-        .hl.good { background: rgba(126,231,135,0.15); }
+        .line { display: block; }
+        .line.bad { background: rgba(248,81,73,0.2); color: var(--red); }
+        .line.good { background: rgba(126,231,135,0.2); color: var(--green); }
+
+        .features {
+            max-width: 500px;
+            width: 100%;
+            margin-bottom: 50px;
+        }
+        .features ul {
+            list-style: none;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+        .features li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .features li:last-child { border-bottom: none; }
+        .features li::before {
+            content: "~";
+            color: var(--accent-light);
+            margin-right: 10px;
+        }
+
+        .install {
+            max-width: 500px;
+            width: 100%;
+            margin-bottom: 50px;
+        }
+        .install ol {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            padding-left: 20px;
+        }
+        .install li {
+            padding: 6px 0;
+        }
+        .install code {
+            background: var(--bg-card);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--cyan);
+        }
 
         footer {
             margin-top: auto;
-            padding-top: 60px;
+            padding-top: 40px;
             color: var(--text-dim);
             font-size: 0.85rem;
         }
@@ -121,32 +174,53 @@
 <body>
     <div class="hero">
         <h1>C# Gentle Formatter</h1>
-        <p class="tagline">VS Code formatter that doesn't strip whitespace from blank lines.</p>
+        <p class="tagline">VS Code formatter that keeps indentation on blank lines.<br>No more noisy git diffs from teammates with different editors.</p>
         <div class="buttons">
             <a href="https://github.com/TrentSterling/csharp-gentle-formatter/releases" class="btn btn-primary">Download VSIX</a>
             <a href="https://github.com/TrentSterling/csharp-gentle-formatter" class="btn btn-secondary">GitHub</a>
         </div>
     </div>
 
+    <h2>The Problem</h2>
     <div class="compare">
         <div class="code-block">
             <div class="code-header bad">Other Formatters</div>
-            <pre>public void Method()
-{
-    var x = 1;
-<span class="hl bad">                    // blank stripped</span>
-    var y = 2;
-}</pre>
+            <pre><span class="line">public void Method()</span>
+<span class="line">{</span>
+<span class="line">    var x = 1;</span>
+<span class="line bad"></span>
+<span class="line">    var y = 2;</span>
+<span class="line">}</span></pre>
         </div>
         <div class="code-block">
             <div class="code-header good">Gentle Formatter</div>
-            <pre>public void Method()
-{
-    var x = 1;
-<span class="hl good">    	                // indent kept</span>
-    var y = 2;
-}</pre>
+            <pre><span class="line">public void Method()</span>
+<span class="line">{</span>
+<span class="line">    var x = 1;</span>
+<span class="line good">        </span>
+<span class="line">    var y = 2;</span>
+<span class="line">}</span></pre>
         </div>
+    </div>
+
+    <div class="features">
+        <h2>What It Does</h2>
+        <ul>
+            <li>Proper indentation based on brace depth</li>
+            <li>Blank lines keep their indentation (tabs/spaces)</li>
+            <li>Keyword spacing: <code>if(x)</code> &rarr; <code>if (x)</code></li>
+            <li>Operator spacing: <code>a=b</code> &rarr; <code>a = b</code></li>
+            <li>Respects strings and comments</li>
+        </ul>
+    </div>
+
+    <div class="install">
+        <h2>Install</h2>
+        <ol>
+            <li>Download the <code>.vsix</code> from GitHub releases</li>
+            <li><code>Ctrl+Shift+P</code> &rarr; "Extensions: Install from VSIX..."</li>
+            <li>Format with <code>Shift+Alt+F</code></li>
+        </ol>
     </div>
 
     <footer>
