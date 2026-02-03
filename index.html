@@ -115,8 +115,26 @@
             overflow-x: auto;
         }
         .line { display: block; }
-        .line.bad { background: rgba(248,81,73,0.2); color: var(--red); }
-        .line.good { background: rgba(126,231,135,0.2); color: var(--green); }
+        .line.bad {
+            background: rgba(248,81,73,0.2);
+            color: var(--red);
+            min-height: 1.6em;
+            position: relative;
+        }
+        .line.bad::after {
+            content: "← stripped";
+            opacity: 0.6;
+            font-size: 0.7rem;
+            margin-left: 4px;
+        }
+        .line.good {
+            background: rgba(126,231,135,0.2);
+            color: var(--green);
+        }
+        .ws {
+            opacity: 0.5;
+            letter-spacing: -2px;
+        }
 
         .features {
             max-width: 500px;
@@ -197,7 +215,7 @@
             <pre><span class="line">public void Method()</span>
 <span class="line">{</span>
 <span class="line">    var x = 1;</span>
-<span class="line good">        </span>
+<span class="line good">    <span class="ws">····</span></span>
 <span class="line">    var y = 2;</span>
 <span class="line">}</span></pre>
         </div>
