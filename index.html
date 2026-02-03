@@ -111,14 +111,16 @@
             padding: 14px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
-            line-height: 1.4;
+            line-height: 1;
             overflow-x: auto;
         }
-        .line { display: block; }
+        .line {
+            display: block;
+            padding: 3px 0;
+        }
         .line.bad {
             background: rgba(248,81,73,0.2);
             color: var(--red);
-            min-height: 1.4em;
         }
         .line.good {
             background: rgba(126,231,135,0.2);
