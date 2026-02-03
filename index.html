@@ -111,12 +111,11 @@
             padding: 14px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
-            line-height: 1;
+            line-height: 1.5;
             overflow-x: auto;
         }
         .line {
             display: block;
-            padding: 3px 0;
         }
         .line.bad {
             background: rgba(248,81,73,0.2);
@@ -198,25 +197,11 @@
     <div class="compare">
         <div class="code-block">
             <div class="code-header bad">Other Formatters</div>
-            <pre><span class="line">public void Method()</span>
-<span class="line">{</span>
-<span class="line">    var x = 1;</span>
-<span class="line bad"></span>
-<span class="line bad"></span>
-<span class="line bad"></span>
-<span class="line">    var y = 2;</span>
-<span class="line">}</span></pre>
+            <pre><span class="line">public void Method()</span><span class="line">{</span><span class="line">    var x = 1;</span><span class="line bad"></span><span class="line bad"></span><span class="line bad"></span><span class="line">    var y = 2;</span><span class="line">}</span></pre>
         </div>
         <div class="code-block">
             <div class="code-header good">Gentle Formatter</div>
-            <pre><span class="line">public void Method()</span>
-<span class="line">{</span>
-<span class="line">    var x = 1;</span>
-<span class="line good">    <span class="ws">····</span></span>
-<span class="line good">    <span class="ws">····</span></span>
-<span class="line good">    <span class="ws">····</span></span>
-<span class="line">    var y = 2;</span>
-<span class="line">}</span></pre>
+            <pre><span class="line">public void Method()</span><span class="line">{</span><span class="line">    var x = 1;</span><span class="line good">    <span class="ws">····</span></span><span class="line good">    <span class="ws">····</span></span><span class="line good">    <span class="ws">····</span></span><span class="line">    var y = 2;</span><span class="line">}</span></pre>
         </div>
     </div>
 
