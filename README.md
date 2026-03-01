@@ -1,5 +1,7 @@
 # C# Gentle Formatter
 
+[![C# Gentle Formatter](https://tront.xyz/blog/assets/img/blog/csharp-gentle-formatter.png)](https://tront.xyz/csharp-gentle-formatter/)
+
 A VS Code extension that formats C# code with proper indentation while **preserving blank lines with their indentation** (no stripped whitespace on empty lines).
 
 ## Why This Exists
